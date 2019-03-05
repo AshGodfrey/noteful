@@ -1,4 +1,6 @@
 import React from 'react';
+import FolderSidebar from '../FolderSidebar/FolderSidebar'
+import AddFolder from '../AddFolder/AddFolder'
 
 
 class Sidebar extends React.Component {
@@ -7,6 +9,7 @@ class Sidebar extends React.Component {
 		return(
 			<div>
 				{folders}
+				<AddFolder />
 			</div>
 			)
 	}
