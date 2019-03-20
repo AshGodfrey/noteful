@@ -1,8 +1,6 @@
 import React from 'react';
 import dummyStore from '../dummy-store'
 import Header from '../Header/Header'
-import Sidebar from '../Sidebar/Sidebar'
-import Main from '../Main/Main'
 import { Route } from 'react-router-dom'
 import Home from '../Home/Home'
 
@@ -22,8 +20,7 @@ class App extends React.Component{
 	return (
 		<div> 
 			<Header />
-			<Route exact path="/" component={Home} folders={this.state.folders} notes={this.state.notes} />
-		
+			<Route exact path="/" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes}/> } />
 		</div>)
  }
 }
