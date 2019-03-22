@@ -6,11 +6,12 @@ import { NavLink } from 'react-router-dom';
 
 class Sidebar extends React.Component {
 	folderHTML(folder) {
+		var folderLink = "/folder/" + folder.id
 		var classname = "folder";
 		if (folder.id === this.props.activeFolder) {
 			classname = "folder-highlight " + classname;
 		} 
-		return (<div id={folder.id} className={classname}> {folder.name} </div>)
+		return (<a href={folderLink}><div id={folder.id} className={classname}> {folder.name} </div></a>)
 	}
 
 

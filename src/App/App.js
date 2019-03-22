@@ -21,6 +21,7 @@ class App extends React.Component{
 		<div> 
 			<Header />
 			<Route exact path="/" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes}/> } />
+			<Route exact path="/folder/:activeFolderId" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes} /> } />
 		</div>)
  }
 }
