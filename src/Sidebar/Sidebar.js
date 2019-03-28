@@ -14,7 +14,6 @@ class Sidebar extends React.Component {
 		return (<a href={folderLink}><div id={folder.id} className={classname}> {folder.name} </div></a>)
 	}
 
-
 	render() {
 		if (this.props.folders) {
 			var folders = this.props.folders.map((folder) => this.folderHTML(folder))
