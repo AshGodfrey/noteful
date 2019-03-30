@@ -2,10 +2,11 @@ import React from 'react';
 import DeleteNote from '../DeleteNote/DeleteNote'
 
 class NoteDetail extends React.Component {
-	
 
 	render() {
-		
+
+
+//{ (note) => note.id === noteId}
 	
 		return(
 			<main>

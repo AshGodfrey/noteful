@@ -7,13 +7,16 @@ import NoteSidebar from '../NoteSidebar/NoteSidebar'
 class NotePage extends React.Component{ 
 
 	render() { 
+
 		var activeNote;
+		var activeFolder;
 		if (this.props.match) {
-			activeNote = this.props.match.params.activeNoteId;
+			activeNote = this.props.match.params;
+			//SO THE ISSUE is that it's using note as the param, but not looking at fodlerID
 		}
 		return (
 			<div> 
-				<NoteSidebar />
+				<NoteSidebar activeFolder={this.props.activeFolderId} />
 				<NoteDetail />
 				
 			</div>)

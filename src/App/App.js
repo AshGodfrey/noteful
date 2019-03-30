@@ -17,15 +17,33 @@ class App extends React.Component{
 		this.setState(dummyStore)
 	}
 
+	findNote(notes, noteId){
+		notes.find((note) => note.id === noteId)
+	}
+
+	findFolder(folders, folderId){
+		folders.find((folder) => folder.id === folderId)
+	}
+
 	render() { 
 	return (
-		<Router>
-			<div> 
+		<Router> 
 				<Header />
 				<Route exact path="/" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes}/> } />
 				<Route exact path="/folder/:activeFolderId" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes} /> } />
-				<Route exact path="/note/:activeNoteId" render={(props) => <NotePage {...props} folders={this.state.folders} notes={this.state.notes} /> } />
-			</div>
+				<Route exact path="/note/:activeNoteId" 
+					render={(props) => {
+						const noteId = props.match.params
+						const note = this.findNote(this.state.notes, noteId) || {}
+						const activeFolder = this.findFolder(this.state.folders, note.folderId)
+						return (
+							<NotePage
+								{...props}
+								activeFolder={activeFolder}
+							/>
+						)
+					}}
+				/>
 		</Router>)
  }
 }
