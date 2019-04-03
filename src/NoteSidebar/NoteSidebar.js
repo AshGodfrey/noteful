@@ -10,11 +10,19 @@ import {
 
 class NoteSidebar extends React.Component {
 	render() {
-		var activeFolder=this.props.activeFolder
+
+		if (this.props.activeFolder) {
+			return (
+				<div className = "sidebar"> 
+					<button onClick={() => window.history.back()}>Go Back</button>
+					<p>{this.props.activeFolder.name}</p>
+				</div>
+				) 
+			
+		}
 		return (
 		<div className = "sidebar"> 
 			<button onClick={() => window.history.back()}>Go Back</button>
-			<p>{activeFolder} </p>
 		</div>
 		) 
 	} 

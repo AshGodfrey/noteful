@@ -2,3 +2,7 @@
 	position: fixed;
 	top: 100px;
 }
+
+.folder-highlight {
+	background-color: #add8e6;
+}

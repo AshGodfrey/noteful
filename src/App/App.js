@@ -18,11 +18,23 @@ class App extends React.Component{
 	}
 
 	findNote(notes, noteId){
-		notes.find((note) => note.id === noteId)
+		//notes.find((note) => note.id === noteId)
+		var i;
+		for(i = 0; i < notes.length; i++) {
+			if (notes[i].id === noteId) {
+				return notes[i];
+			}
+		}
 	}
 
+
 	findFolder(folders, folderId){
-		folders.find((folder) => folder.id === folderId)
+		var i;
+		for(i = 0; i < folders.length; i++) {
+			if (folders[i].id === folderId) {
+				return folders[i];
+			}
+		}
 	}
 
 	render() { 
@@ -33,13 +45,14 @@ class App extends React.Component{
 				<Route exact path="/folder/:activeFolderId" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes} /> } />
 				<Route exact path="/note/:activeNoteId" 
 					render={(props) => {
-						const noteId = props.match.params
-						const note = this.findNote(this.state.notes, noteId) || {}
+						const { activeNoteId } = props.match.params
+						const note = this.findNote(this.state.notes, activeNoteId) || {}
 						const activeFolder = this.findFolder(this.state.folders, note.folderId)
 						return (
 							<NotePage
 								{...props}
-								activeFolder={activeFolder}
+								activeFolder={ activeFolder}
+								activeNote = { note }
 							/>
 						)
 					}}
