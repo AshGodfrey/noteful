@@ -7,6 +7,7 @@ import config from '../Config';
 class NoteDetail extends React.Component {
 	
 	render() {
+		
 		if (this.props) {
 			var { activeNote} = this.props.activeNote
 			
