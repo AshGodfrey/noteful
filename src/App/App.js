@@ -4,6 +4,8 @@ import Header from '../Header/Header'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from '../Home/Home'
 import NotePage from '../NotePage/NotePage'
+import ApiContext from '../ApiContext'
+import config from '../config'
 
 
 class App extends React.Component{ 
@@ -14,7 +16,19 @@ class App extends React.Component{
 
 
 	componentDidMount(){
-		this.setState(dummyStore)
+		Promise.all([
+			fetch(`${config.API_ENDPOINT}/notes`),
+			fetch(`${config.API_ENDPOINT}/folders`)
+		])
+		.then (([noteRes, folderRes]) => {
+			return Promise.all([
+				noteRes.json(),
+				folderRes.json(),
+				])
+		})
+		.then(([notes, folders]) => {
+			this.setState({ notes, folders })
+		})
 	}
 
 	findNote(notes, noteId){
