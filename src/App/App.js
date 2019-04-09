@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from '../Home/Home'
 import NotePage from '../NotePage/NotePage'
 import ApiContext from '../ApiContext'
-import config from '../config'
+import config from '../Config'
 
 
 class App extends React.Component{ 
@@ -51,8 +51,20 @@ class App extends React.Component{
 		}
 	}
 
+	handleDeleteNote = noteId => {
+    	this.setState({
+      	notes: this.state.notes.filter(note => note.id !== noteId)
+   	 })
+  	}
+
 	render() { 
+		const value = {
+			notes: this.state.notes,
+			folders: this.state.folders,		
+			deleteNote: this.handleDeleteNote,
+		}
 	return (
+		<ApiContext.Provider value={value}>
 		<Router> 
 				<Header />
 				<Route exact path="/" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes}/> } />
@@ -71,7 +83,8 @@ class App extends React.Component{
 						)
 					}}
 				/>
-		</Router>)
+		</Router>
+	</ApiContext.Provider>)
  }
 }
 

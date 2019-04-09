@@ -19,7 +19,7 @@ class Main extends React.Component {
 
 	render() {
 		
-		var folderNotes = this.props.notes;
+		var folderNotes = this.state.notes;
 		if (this.props.activeFolder) {
 			folderNotes = this.props.notes.filter((notes) => notes.folderId === this.props.activeFolder);
 		}

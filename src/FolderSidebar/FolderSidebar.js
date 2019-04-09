@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 
 export default function FolderSidebar(props) {
-	var folders = this.props.folders.map((folder) => <p> {folder.name} </p>)
+	var folders = this.context
 	return (
 		<div>
 			{folders}
