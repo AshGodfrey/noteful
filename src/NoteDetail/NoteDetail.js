@@ -5,14 +5,16 @@ import ApiContext from '../ApiContext';
 import config from '../Config';
 
 class NoteDetail extends React.Component {
+	static contextType = ApiContext
+
 	static defaultProps ={
 	  onDeleteNote: () => {},
 	  }
-	  static contextType = ApiContext;
+	  
 
 	  handleClickDelete = e => {
-	   
-	    const noteId = this.props.activeNote
+	    const noteId = this.context
+	    e.preventDefault(); 
 
 	    fetch(`${config.API_ENDPOINT}/notes/${noteId.activeNote.id}`, {
 	      method: 'DELETE',
@@ -21,20 +23,19 @@ class NoteDetail extends React.Component {
 	      },
 	    })
 	      .then(res => {
-	        if (!res.ok)
-	          return res.json().then(e => Promise.reject(e))
-	          return res.json()
+	        if (!res.ok) {return res.json().then(e => Promise.reject(e))}
+	        return res.json()
 	      })
 	      .then(() => {
 	        this.context.deleteNote(noteId)
-	        this.props.onDeleteNote(noteId)
+	        this.context.onDeleteNote(noteId)
 	      })
 	  }
 
 	render() {
 		
-		if (this.props) {
-			var { activeNote} = this.props.activeNote
+		if (this.context) {
+			var { activeNote} = this.context.activeNote
 			
 		}
 			

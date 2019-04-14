@@ -67,18 +67,17 @@ class App extends React.Component{
 		<ApiContext.Provider value={value}>
 		<Router> 
 				<Header />
-				<Route exact path="/" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes}/> } />
-				<Route exact path="/folder/:activeFolderId" render={(props) => <Home {...props} folders={this.state.folders} notes={this.state.notes} /> } />
-				<Route exact path="/note/:activeNoteId" 
-					render={(props) => {
-						const { activeNoteId } = props.match.params
-						const note = this.findNote(this.state.notes, activeNoteId) || {}
-						const activeFolder = this.findFolder(this.state.folders, note.folderId)
-						return (
-							<NotePage
-								{...props}
-								activeFolder={ activeFolder}
-								activeNote = { note }
+				<Route 
+					exact path="/" 
+					component={Home} 
+				/>
+				<Route 
+					exact path="/folder/:activeFolderId"
+				 	component = {Home} 
+				 />
+				<Route 
+					exact path="/note/:activeNoteId" 
+					component = {NotePage}
 							/>
 						)
 					}}
