@@ -13,10 +13,11 @@ class NoteDetail extends React.Component {
 	  
 
 	  handleClickDelete = e => {
-	    const noteId = this.context
-	    e.preventDefault(); 
+	  	e.preventDefault(); 
+	    const {activeNote} = this.props
+	  
 
-	    fetch(`${config.API_ENDPOINT}/notes/${noteId.activeNote.id}`, {
+	    fetch(`${config.API_ENDPOINT}/notes/${activeNote.id}`, {
 	      method: 'DELETE',
 	      headers: {
 	        'content-type': 'application/json'
@@ -27,17 +28,15 @@ class NoteDetail extends React.Component {
 	        return res.json()
 	      })
 	      .then(() => {
-	        this.context.deleteNote(noteId)
-	        this.context.onDeleteNote(noteId)
+	        this.context.deleteNote(activeNote.id)
+	        window.history.back();
 	      })
 	  }
 
 	render() {
 		
-		if (this.context) {
-			var { activeNote} = this.context.activeNote
+			var { activeNote} = this.props
 			
-		}
 			
 		return(
 			<main>

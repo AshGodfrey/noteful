@@ -31,26 +31,6 @@ class App extends React.Component{
 		})
 	}
 
-	findNote(notes, noteId){
-		//notes.find((note) => note.id === noteId)
-		var i;
-		for(i = 0; i < notes.length; i++) {
-			if (notes[i].id === noteId) {
-				return notes[i];
-			}
-		}
-	}
-
-
-	findFolder(folders, folderId){
-		var i;
-		for(i = 0; i < folders.length; i++) {
-			if (folders[i].id === folderId) {
-				return folders[i];
-			}
-		}
-	}
-
 	handleDeleteNote = noteId => {
     	this.setState({
       	notes: this.state.notes.filter(note => note.id !== noteId)
@@ -76,12 +56,10 @@ class App extends React.Component{
 				 	component = {Home} 
 				 />
 				<Route 
-					exact path="/note/:activeNoteId" 
+					exact path="/note/:activeNoteId"
 					component = {NotePage}
 							/>
-						)
-					}}
-				/>
+
 		</Router>
 	</ApiContext.Provider>)
  }
