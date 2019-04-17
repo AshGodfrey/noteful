@@ -1,8 +1,9 @@
 import React from 'react';
 import './Sidebar.css'
 import FolderSidebar from '../FolderSidebar/FolderSidebar'
-import AddFolder from '../AddFolder/AddFolder'
-import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button'
+import { Link, NavLink } from 'react-router-dom';
+
 
 class Sidebar extends React.Component {
 	folderHTML(folder) {
@@ -19,8 +20,18 @@ class Sidebar extends React.Component {
 			var folders = this.props.folders.map((folder) => this.folderHTML(folder))
 			return(
 				<div className="sidebar">
+					<div className="folderdisplay">
 					{folders}
-					<AddFolder />
+					</div>
+								        
+			          <Button
+			            tag={Link}
+			            to='/add-folder'
+			            type='button'
+			            className='add-folder-button'>
+			            Add Folder 
+			            </Button>
+			           
 				</div>
 				)
 		}
