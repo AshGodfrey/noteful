@@ -3,6 +3,7 @@ import './Main.css'
 import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext'
 import config from '../Config'
+import Button from '../Button/Button'
 
 class Main extends React.Component {
 	static contextType = ApiContext
@@ -59,6 +60,13 @@ class Main extends React.Component {
 		return(
 			<main>
 				{notes}
+				 <Button
+			            tag={Link}
+			            to='/add-note'
+			            type='button'
+			            className='add-folder-button'>
+			            Add Note
+			            </Button>
 			</main>
 			)
 		}

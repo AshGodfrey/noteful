@@ -40,6 +40,7 @@ class NotePage extends React.Component{
 					<NoteDetail
 					 	activeNote={note}
 					 	 />
+					 	
 					 	}
 				</div>
 		//</ApiContext.Provider>
