@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext'
 import config from '../Config'
 import Button from '../Button/Button'
+import PropTypes from 'prop-types'
 
 class Main extends React.Component {
 	static contextType = ApiContext
@@ -14,8 +15,6 @@ class Main extends React.Component {
 
 	  handleClickDelete = (note) => (e) => {
 	  	e.preventDefault(); 
-	    const {activeNote} = this.props
-	  
 
 	    fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
 	      method: 'DELETE',
@@ -70,6 +69,10 @@ class Main extends React.Component {
 			</main>
 			)
 		}
+}
+
+Main.propTypes = {
+	activeFolder: PropTypes.string
 }
 
 export default Main;

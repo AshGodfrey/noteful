@@ -3,6 +3,7 @@ import './NoteDetail.css'
 import { Link } from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import config from '../Config';
+import PropType from 'prop-types'
 
 class NoteDetail extends React.Component {
 	static contextType = ApiContext
@@ -50,6 +51,10 @@ class NoteDetail extends React.Component {
 			)
 		}
 		
+}
+
+NoteDetail.propType = {
+	activeNote: PropType.array,
 }
 
 export default NoteDetail;

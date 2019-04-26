@@ -3,6 +3,7 @@ import './Sidebar.css'
 import FolderSidebar from '../FolderSidebar/FolderSidebar'
 import Button from '../Button/Button'
 import { Link, NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 
 class Sidebar extends React.Component {
@@ -42,4 +43,10 @@ class Sidebar extends React.Component {
 
 }
 
+Sidebar.propTypes = {
+	folders: PropTypes.array,
+	activeFolder: PropTypes.string
+}
+
 export default Sidebar;
+

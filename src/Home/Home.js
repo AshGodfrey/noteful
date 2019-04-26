@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Main from '../Main/Main'
 import Sidebar from '../Sidebar/Sidebar'
 import ApiContext from '../ApiContext'
+import PropTypes from 'prop-types'
 
 class Home extends React.Component{ 
 	static contextType = ApiContext
@@ -16,7 +17,7 @@ class Home extends React.Component{
 
 			<div> 
 				<Sidebar folders={this.context.folders} activeFolder={activeFolder}/>
-				<Main  notes={this.context.notes} activeFolder={activeFolder}/>
+				<Main activeFolder={activeFolder}/>
 			</div>)
 	}
 }

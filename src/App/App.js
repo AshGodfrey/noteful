@@ -43,7 +43,7 @@ class App extends React.Component{
   	handleAddFolder = folder => {
   		this.setState({
   			folders: [
-  			this.state.folders,
+  			...this.state.folders,
   			folder
   			]
   		})
