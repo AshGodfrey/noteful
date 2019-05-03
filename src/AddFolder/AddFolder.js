@@ -4,14 +4,10 @@ import Sidebar from '../Sidebar/Sidebar'
 import ApiContext from '../ApiContext'
 import Config from '../Config'
 import Form from "../Form/Form"
-
+import PropTypes from 'prop-types'
 
 export default class AddFolder extends React.Component {
-  static defaultProps = {
-    history: {
-      push: () => { }
-    },
-  }
+
   static contextType = ApiContext;
 
   handleSubmit = e => {
@@ -60,4 +56,9 @@ export default class AddFolder extends React.Component {
       </section>
     )
   }
+}
+
+
+AddFolder.defaultProps = {
+  history: PropTypes.Object,
 }

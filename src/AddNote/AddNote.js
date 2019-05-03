@@ -2,14 +2,10 @@ import React, { Component } from 'react'
 import Form from '../Form/Form'
 import ApiContext from '../ApiContext'
 import Config from '../Config'
-
+import PropTypes from 'prop-types'
 
 export default class AddNote extends Component {
-  static defaultProps = {
-    history: {
-      push: () => { }
-    },
-  }
+
   static contextType = ApiContext;
 
   handleSubmit = e => {
@@ -83,4 +79,8 @@ export default class AddNote extends Component {
       </section>
     )
   }
+}
+
+AddNote.defaultProps = {
+  history: PropTypes.Object,
 }
