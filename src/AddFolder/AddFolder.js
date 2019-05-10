@@ -7,6 +7,20 @@ import Form from "../Form/Form"
 import PropTypes from 'prop-types'
 
 export default class AddFolder extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      value: "Please name your folder"
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+   
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+  
 
   static contextType = ApiContext;
 
@@ -45,7 +59,7 @@ export default class AddFolder extends React.Component {
             <label htmlFor='folder-name-input'>
               Name
             </label>
-            <input type='text' id='folder-name-input' name='folder-name' required/>
+            <input value={this.state.value} onChange={this.handleChange} type='text' id='folder-name-input' name='folder-name' required/>
           </div>
           <div className='buttons'>
             <button type='submit'>
