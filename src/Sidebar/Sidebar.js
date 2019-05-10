@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import FolderError from '../folder-error'
 
 
+
 class Sidebar extends React.Component {
 	folderHTML(folder) {
 		var folderLink = "/folder/" + folder.id
@@ -14,7 +15,7 @@ class Sidebar extends React.Component {
 		if (folder.id === this.props.activeFolder) {
 			classname = "folder-highlight " + classname;
 		} 
-		return (<a href={folderLink}><div id={folder.id} className={classname}> {folder.name} </div></a>)
+		return (<NavLink to={folderLink}><div id={folder.id} className={classname}> {folder.name} </div></NavLink>)
 	}
 
 	render() {
