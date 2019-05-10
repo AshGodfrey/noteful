@@ -4,6 +4,7 @@ import FolderSidebar from '../FolderSidebar/FolderSidebar'
 import Button from '../Button/Button'
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types'
+import FolderError from '../folder-error'
 
 
 class Sidebar extends React.Component {
@@ -22,7 +23,9 @@ class Sidebar extends React.Component {
 			return(
 				<div className="sidebar">
 					<div className="folderdisplay">
-					{folders}
+						<FolderError>
+							{folders}
+						</FolderError>
 					</div>
 								        
 			          <Button

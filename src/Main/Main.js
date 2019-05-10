@@ -5,6 +5,7 @@ import ApiContext from '../ApiContext'
 import config from '../Config'
 import Button from '../Button/Button'
 import PropTypes from 'prop-types'
+import NotesError from '../notes-error'
 
 class Main extends React.Component {
 	static contextType = ApiContext
@@ -58,14 +59,16 @@ class Main extends React.Component {
 			
 		return(
 			<main>
-				{notes}
-				 <Button
-			            tag={Link}
-			            to='/add-note'
-			            type='button'
-			            className='add-folder-button'>
-			            Add Note
-			            </Button>
+				<NotesError>
+					{notes}
+				</NotesError>
+					 <Button
+				            tag={Link}
+				            to='/add-note'
+				            type='button'
+				            className='add-folder-button'>
+				            Add Note
+				            </Button>
 			</main>
 			)
 		}

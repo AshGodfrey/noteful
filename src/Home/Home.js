@@ -3,6 +3,8 @@ import Main from '../Main/Main'
 import Sidebar from '../Sidebar/Sidebar'
 import ApiContext from '../ApiContext'
 import PropTypes from 'prop-types'
+import NotesError from '../notes-error'
+import FolderError from '../folder-error'
 
 class Home extends React.Component{ 
 	static contextType = ApiContext
@@ -16,8 +18,12 @@ class Home extends React.Component{
 		return (
 
 			<div> 
-				<Sidebar folders={this.context.folders} activeFolder={activeFolder}/>
-				<Main activeFolder={activeFolder}/>
+				<FolderError>
+					<Sidebar folders={this.context.folders} activeFolder={activeFolder}/>
+				</FolderError>
+				<NotesError>
+					<Main activeFolder={activeFolder}/>
+				</NotesError>
 			</div>)
 	}
 }
