@@ -1,5 +1,4 @@
 import React from 'react';
-import dummyStore from '../dummy-store'
 import Header from '../Header/Header'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from '../Home/Home'
@@ -27,6 +26,18 @@ class App extends React.Component{
 		
 		Promise.all([notesRes, foldersRes])
 		.then (responses => Promise.all(responses.map(res => res.json())))
+
+		Promise.all([
+			fetch(`${config.API_ENDPOINT}/api/notes`),
+			fetch(`${config.API_ENDPOINT}/api/folders`)
+		])
+		.then (([noteRes, folderRes]) => {
+			return Promise.all([
+				noteRes.json(),
+				folderRes.json(),
+				])
+		})
+		 
 		.then(([notes, folders]) => {
 			this.setState({ notes, folders })
 		})
@@ -39,14 +50,15 @@ class App extends React.Component{
   	}
 
 
-  	handleAddFolder = folder => {
+  	handleAddFolder = newFolder => {
+  		const newFolders = this.state.folders.map(fold => 
+  			(fold.id === newFolder.id)
+  			? newFolder
+  			: fold)
   		this.setState({
-  			folders: [
-  			...this.state.folders,
-  			folder
-  			]
+  			folders:newFolders
   		})
-  	}
+  	};
 
   	handleAddNote = note => {
   		this.setState({
