@@ -17,7 +17,7 @@ class Main extends React.Component {
 	  handleClickDelete = (note) => (e) => {
 	  	e.preventDefault(); 
 
-	    fetch(`${config.API_ENDPOINT}/notes/${note.id}`, {
+	    fetch(`${config.API_ENDPOINT}/api/notes/${note.id}`, {
 	      method: 'DELETE',
 	      headers: {
 	        'content-type': 'application/json'
@@ -25,7 +25,7 @@ class Main extends React.Component {
 	    })
 	      .then(res => {
 	        if (!res.ok) {return res.json().then(e => Promise.reject(e))}
-	        return res.json()
+	        return 
 	      })
 	      .then(() => {
 	        this.context.deleteNote(note.id)
@@ -53,7 +53,7 @@ class Main extends React.Component {
 		
 		var folderNotes = this.context.notes;
 		if (this.props.activeFolder) {
-			folderNotes = this.context.notes.filter((notes) => notes.folderId === this.props.activeFolder);
+			folderNotes = this.context.notes.filter((notes) => notes.folder_id == this.props.activeFolder);
 		}
 		var notes = folderNotes.map((note) => this.noteHTML(note))
 			

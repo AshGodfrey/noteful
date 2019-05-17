@@ -15,7 +15,7 @@ class Sidebar extends React.Component {
 		if (folder.id === this.props.activeFolder) {
 			classname = "folder-highlight " + classname;
 		} 
-		return (<NavLink to={folderLink}><div id={folder.id} className={classname}> {folder.name} </div></NavLink>)
+		return (<NavLink to={folderLink}><div id={folder.id} className={classname}> {folder.fullname} </div></NavLink>)
 	}
 
 	render() {

@@ -24,12 +24,14 @@ export default class AddFolder extends React.Component {
 
   static contextType = ApiContext;
 
-  handleSubmit = e => {
+  handleSubmit(e) {
     e.preventDefault()
+
     const folder = {
       name: e.target['folder-name'].value
     }
-    fetch(`${Config.API_ENDPOINT}/folders`, {
+    
+    fetch(`${Config.API_ENDPOINT}/api/folders`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -59,7 +61,11 @@ export default class AddFolder extends React.Component {
             <label htmlFor='folder-name-input'>
               Name
             </label>
-            <input value={this.state.value} onChange={this.handleChange} type='text' id='folder-name-input' name='folder-name' required/>
+            <input value={this.state.value}
+             onChange={this.handleChange}
+              type='text' 
+              id='folder-name-input'
+               name='folder-name' required/>
           </div>
           <div className='buttons'>
             <button type='submit'>

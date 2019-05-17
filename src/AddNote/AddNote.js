@@ -27,12 +27,12 @@ export default class AddNote extends Component {
     e.preventDefault()
    
       const newNote = {
-        name: e.target['note-name'].value,
-        content: e.target['note-content'].value,
-        folderId: e.target['note-folder-id'].value,
+        name: e.target['noteName'].value,
+        content: e.target['noteContent'].value,
+        folder_id: e.target['notefolderid'].value,
         modified: new Date(),
       }
-      fetch(`${Config.API_ENDPOINT}/notes`, {
+      fetch(`${Config.API_ENDPOINT}/api/notes`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json'
@@ -41,12 +41,12 @@ export default class AddNote extends Component {
       })
         .then(res => {
           if (!res.ok)
-            return res.json().then(e => Promise.reject(e))
-          return res.json()
+           return res.json().then(e => Promise.reject(e))
+        return res.json()
         })
-        .then(note => {
-          this.context.addNote(note)
-          this.props.history.push(`/folder/${note.folderId}`)
+        .then(newNote => {
+          this.context.addNote(newNote)
+          this.props.history.push(`/folder/${newNote.folder_id}`)
         })
         .catch(error => {
           console.error({ error })
@@ -64,12 +64,16 @@ export default class AddNote extends Component {
             <label htmlFor='note-name-input'>
               Name
             </label>
+
             <input 
               type='text' 
               id='note-name-input' 
               name='noteName' 
               value={this.state.noteName}
+              onChange={this.handleChange} 
             required/>
+
+
           </div>
           <div className='field'>
             <label htmlFor='note-content-input'>
@@ -79,6 +83,7 @@ export default class AddNote extends Component {
               id='note-content-input' 
               name='noteContent' 
               value={this.state.noteContent}
+              onChange={this.handleChange} 
               required />
           </div>
           <div className='field'>
@@ -92,7 +97,7 @@ export default class AddNote extends Component {
               <option value={null}>...</option>
               {folders.map(folder =>
                 <option key={folder.id} value={folder.id}>
-                  {folder.name}
+                  {folder.fullname}
                 </option>
               )}
             </select>

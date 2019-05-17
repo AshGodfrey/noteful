@@ -12,7 +12,7 @@ class NotePage extends React.Component{
 		//notes.find((note) => note.id === noteId)
 		var i;
 		for(i = 0; i < notes.length; i++) {
-			if (notes[i].id === noteId) {
+			if (notes[i].id == noteId) {
 				return notes[i];
 			}
 		}
@@ -22,7 +22,7 @@ class NotePage extends React.Component{
 	findFolder(folders, folderId){
 		var i;
 		for(i = 0; i < folders.length; i++) {
-			if (folders[i].id === folderId) {
+			if (folders[i].id == folderId) {
 				return folders[i];
 			}
 		}

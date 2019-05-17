@@ -11,23 +11,22 @@ import addNote from '../AddNote/AddNote'
 
 
 class App extends React.Component{ 
-	state = {
-		folders: [],
-		notes: []
-	}	
-
+	constructor(props) {
+		super(props);
+		this.state = { folders: [], notes: []}
+		}
+	
 
 	componentDidMount(){
-		Promise.all([
-			fetch(`${config.API_ENDPOINT}/notes`),
-			fetch(`${config.API_ENDPOINT}/folders`)
-		])
-		.then (([noteRes, folderRes]) => {
-			return Promise.all([
-				noteRes.json(),
-				folderRes.json(),
-				])
-		})
+		const notesRes = fetch(`${config.API_ENDPOINT}/api/notes`, {
+				method:'GET',
+			});
+		const foldersRes = fetch(`${config.API_ENDPOINT}/api/folders`, {
+				method:'GET',
+			});
+		
+		Promise.all([notesRes, foldersRes])
+		.then (responses => Promise.all(responses.map(res => res.json())))
 		.then(([notes, folders]) => {
 			this.setState({ notes, folders })
 		})

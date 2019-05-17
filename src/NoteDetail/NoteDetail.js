@@ -18,7 +18,7 @@ class NoteDetail extends React.Component {
 	    const {activeNote} = this.props
 	  
 
-	    fetch(`${config.API_ENDPOINT}/notes/${activeNote.id}`, {
+	    fetch(`${config.API_ENDPOINT}/api/notes/${activeNote.id}`, {
 	      method: 'DELETE',
 	      headers: {
 	        'content-type': 'application/json'
@@ -26,7 +26,7 @@ class NoteDetail extends React.Component {
 	    })
 	      .then(res => {
 	        if (!res.ok) {return res.json().then(e => Promise.reject(e))}
-	        return res.json()
+	        return
 	      })
 	      .then(() => {
 	        this.context.deleteNote(activeNote.id)
@@ -36,7 +36,7 @@ class NoteDetail extends React.Component {
 
 	render() {
 		
-			var { activeNote} = this.props
+			var { activeNote } = this.props
 			
 			
 		return(
